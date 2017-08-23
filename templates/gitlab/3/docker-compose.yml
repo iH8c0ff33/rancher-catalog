@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  gitlab-server:
+    ports:
+      - ${ssh_port}:22/tcp
+    labels:
+      io.rancher.container.hostname_override: container_name
+    image: gitlab/gitlab-ce:9.5.0-ce.0
+    volumes:
+      - ${gitlab_app_data}:/var/opt/gitlab
+      - ${gitlab_log_data}:/var/log/gitlab
+      - ${gitlab_conf_files}:/etc/gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url '${gitlab_omnipus_prefix}${gitlab_hostname}'
+        registry_external_url '${gitlab_omnipus_prefix}${registry_gitlab_hostname}'

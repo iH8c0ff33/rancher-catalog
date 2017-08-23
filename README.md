@@ -1,8 +1,10 @@
-# Rancher Community Catalog 
+# Rancher Community Catalog
+## _with changes for my home server_
 
-This catalog provides templates created by the community, and they are not maintained or supported by Rancher Labs.
+This catalog provides templates created by the community and modified by me (Daniele Monteleone <daniele@monteleone.ml>), and they are not maintained or supported by Rancher Labs.
 
 # License
+Copyright (c) 2017 Daniele Monteleone  
 Copyright (c) 2014-2016 [Rancher Labs, Inc.](http://rancher.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");

@@ -1,0 +1,65 @@
+.catalog:
+  name: Gitlab Community
+  version: 9.5.0-ce.0
+  description: |
+    Gitlab CE is a free GitHub alternative
+  minimum_rancher_version: v0.56.0
+  maintainer: "Daniele Monteleone <daniele@monteleone.ml>"
+  uuid: gitlab-1337
+  questions:
+    - variable: "gitlab_hostname"
+      description: "Gitlab hostname (without uri scheme http:// or https://)"
+      label: "Hostname:"
+      required: true
+      default: "git.example.com"
+      type: "string"
+    - variable: "registry_gitlab_hostname"
+      description: "Registry Gitlab hostname (without uri scheme http:// or https://)"
+      label: "Registry hostname:"
+      required: true
+      default: "registry.example.com"
+      type: "string"
+    - variable: "gitlab_omnipus_prefix"
+      label: "Gitlab external_url prefix:"
+      description: |
+        This is needed for the docker-compose file to set the correct external_url
+      default: 'http://'
+      required: true
+      type: "enum"
+      options:
+        - 'http://'
+        - 'https://'
+    - variable: "ssh_port"
+      description: "SSH port to expose on host. Will be used to bind TCP"
+      label: "SSH port:"
+      required: true
+      default: 2224
+      type: "int"
+    - variable: "gitlab_app_data"
+      description: "Gitlab data path (repositories)"
+      label: "Data path:"
+      required: true
+      default: "/pi/data/gitlab"
+      type: "string"
+    - variable: "gitlab_log_data"
+      description: "Gitlab log path"
+      label: "Log path:"
+      required: true
+      default: "/pi/logs/gitlab"
+      type: "string"
+    - variable: "gitlab_conf_files"
+      description: "Gitlab config path (gitlab.rb)"
+      label: "Config path:"
+      required: true
+      default: "/pi/config/gitlab"
+      type: "string"
+
+gitlab-server:
+  scale: 1
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 3000
+    healthy_threshold: 2
